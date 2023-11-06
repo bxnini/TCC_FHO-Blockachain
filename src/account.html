@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport">
+  <title>Blockchain Validator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+  <link href="https://fonts.googleapis.com/css?family=Work+Sans:200,400&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" type="imagex/png" href="../images/block_icon.ico">
+  <script src="https://kit.fontawesome.com/453729a97c.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="input.css" />
+
+
+  <style>
+    .login {
+      background: url('https://images.unsplash.com/photo-1686425374911-e0d752e09806?auto=format&fit=crop&q=80&w=1493&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .work-sans {
+      font-family: 'Work Sans', sans-serif;
+    }
+
+
+    .hover\:grow {
+      transition: all 0.3s;
+      transform: scale(1);
+    }
+
+    .hover\:grow:hover {
+      transform: scale(1.02);
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="h-screen font-sans login bg-cover">
+    <div class="container mx-auto h-full flex flex-1 justify-center items-center">
+      <div class="w-full max-w-lg">
+        <div class="leading-loose">
+          <form class="max-w-sm m-4 p-10 bg-white bg-opacity-25 rounded-lg shadow-xl">
+            <p class="text-white font-medium text-center text-lg font-bold">CREATE ACCOUNT</p>
+
+            <div class="">
+              <label class="block text-sm text-white" for="email">User</label>
+              <input class="w-full px-5 py-1 text-gray-700 bg-gray-300 rounded-lg focus:outline-none focus:bg-white"
+                type="email" id="email" placeholder="Digite o e-mail" aria-label="email" required>
+            </div>
+
+            <div class="mt-2">
+              <label class="block  text-sm text-white">Email</label>
+              <input class="w-full px-5 py-1 text-gray-700 bg-gray-300 rounded-lg focus:outline-none focus:bg-white"
+                type="password" id="password" placeholder="Digite a sua senha" arial-label="password" required>
+            </div>
+
+            <div class="mt-2">
+              <label class="block  text-sm text-white">Password</label>
+              <input class="w-full px-5 py-1 text-gray-700 bg-gray-300 rounded-lg focus:outline-none focus:bg-white"
+                type="password" id="password" placeholder="Digite a sua senha" arial-label="password" required>
+            </div>
+
+            <div class="mt-4 items-center flex justify-between">
+              <a class="px-4 py-1 text-white  tracking-wider bg-gray-900 hover:bg-gray-800 rounded-lg"
+                href="#">Reset Password</a>
+              <a class="inline-block p-1 right-0 align-baseline font-bold text-sm text-500 text-white hover:text-slate-400"
+                href="../src/index.html">Login</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
