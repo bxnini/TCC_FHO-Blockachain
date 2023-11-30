@@ -1,33 +1,7 @@
 
 //INICIA BLOCKCHAIN
 const sha256 = require('crypto-js/sha256');
-const mysql = require('mysql');
-
-// Configurações da conexão com o banco de dados
-const dbConfig = {
-  host: 'localhost',     // Endereço do servidor MySQL
-  user: 'root',    // Nome de usuário
-  password: '', // Senha
-  database: 'test'  // Nome do banco de dados
-};
-
-// Crie uma conexão com o MySQL
-const connection = mysql.createConnection(dbConfig);
-
-// Conecte ao banco de dados
-connection.connect((err) => {
-  if (err) {
-    console.error('Erro ao conectar ao MySQL: ' + err.stack);
-    return;
-  }
-  console.log('Conexão bem-sucedida ao MySQL como ID ' + connection.threadId);
-
-  // Execute consultas ou outras operações aqui
-});
-
-// Encerre a conexão quando terminar
-connection.end();
-
+const data = require('./file')
 
 class Block {
     constructor(index, previousHash, timestamp, data, hash) {
@@ -60,7 +34,7 @@ const blockchain = [createGenesisBlock()];
 
 //CRIA NOVO BLOCO
 
-const newBlockData = 'Dados do novo bloco';
+const newBlockData = data;
 const newBlock = createNewBlock(blockchain[blockchain.length - 1], newBlockData);
 blockchain.push(newBlock);
 
@@ -95,3 +69,5 @@ const newBlock2 = createNewBlock(blockchain[blockchain.length - 1], newData);
 blockchain.push(newBlock2);
 
 console.log('É a cadeia válida?', isValidChain(blockchain));
+
+export {calculateHash}

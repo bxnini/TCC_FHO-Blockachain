@@ -1,17 +1,15 @@
-const mysql = require('mysql');
+import mysql from 'mysql2';
+import sha256 from 'crypto-js/sha256';
 
-// Configurações da conexão com o banco de dados
 const dbConfig = {
-  host: 'localhost',     // Endereço do servidor MySQL
-  user: 'root',    // Nome de usuário
-  password: '', // Senha
-  database: 'test'  // Nome do banco de dados
+  host: 'localhost',
+  user: 'root',
+  password: '',
+  database: 'block'
 };
 
-// Crie uma conexão com o MySQL
 const connection = mysql.createConnection(dbConfig);
 
-// Conecte ao banco de dados
 connection.connect((err) => {
   if (err) {
     console.error('Erro ao conectar ao MySQL: ' + err.stack);
@@ -19,13 +17,19 @@ connection.connect((err) => {
   }
   console.log('Conexão bem-sucedida ao MySQL como ID ' + connection.threadId);
 
-  // Execute consultas ou outras operações aqui
-});
+  const previousHash = connection.query('select previousHash from blocs order by previousHash desc limit 1; ');
+  const timestamp = new Date().toISOString();
+  const data = 'SeusDadosAqui';
 
+  const calculateHash = (index, previousHash, timestamp, data) => {
+    return sha256(index + previousHash + timestamp + data).toString();
+  };
 
-const novoRegistro = { teste: 'Exemplo'};
+  const hash = calculateHash(0, previousHash, timestamp, data);
 
-connection.query('INSERT INTO teste SET ?', novoRegistro, (err, result) => {
+  const novoRegistro = { previousHash: previousHash, data: data, hash: hash };
+
+  connection.query('INSERT INTO blocks SET ?', novoRegistro, (err, result) => {
     if (err) {
       console.error('Erro ao inserir dados: ' + err);
       return;
@@ -33,5 +37,5 @@ connection.query('INSERT INTO teste SET ?', novoRegistro, (err, result) => {
     console.log('Dados inseridos com sucesso. ID do novo registro: ' + result.insertId);
   });
 
-// Encerre a conexão quando terminar
-connection.end();
+  connection.end();
+});
